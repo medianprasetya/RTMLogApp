@@ -1,6 +1,6 @@
 # logtemp
 
-A new Flutter project.
+i'm learn flutter with trying make a simple mobile app using api and implement beauty UI 
 
 ## Getting Started
 
