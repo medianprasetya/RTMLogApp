@@ -19,8 +19,9 @@ class MyApp extends StatelessWidget {
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
+        debugShowCheckedModeBanner: false,
         // initialRoute: HomePage.routeName,
-        home: const SplashScreen(),
+        home: const HomePage(),
         routes: {
           HomePage.routeName: (context) => const HomePage(),
           SplashScreen.routeName: (context) => const SplashScreen(),
