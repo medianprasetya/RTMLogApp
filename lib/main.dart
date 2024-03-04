@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'page/splash_page.dart';
 import 'page/home_page.dart';
-import 'page/home_page_detail.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 void main() {
   runApp(const MyApp());
