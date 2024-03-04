@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import '/component/menu_list.dart';
+import 'package:logtemp/view/home_menu_list.dart';
+import 'package:faker/faker.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,50 +13,49 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey =
-      GlobalKey();
+  final Faker fkr = Faker();
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   // Index untuk melacak tampilan mana yang sedang aktif
   int _currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
+    // List<HomeApi> datahome = [];
+
     return Scaffold(
-      // body
-      body: Container(
-        child: IndexedStack(
-          index: _currentIndex,
-          children: [
-            
-            // Tampilan pertama
-             Container(
-              child: const Center(
-               child: Text('Tampilan Ketiga'),
-              ),
-             ),
-        
-          
-             Column(
-               children: [
-                Menu(),Menu(),Menu(),Menu(),Menu(),
-                 Container(
-                  child: Center(
-                    child: Menu(),
-                  )),
-               ],
-             ),
-          
-            // Tampilan ketiga
-            Container(
-              // Ganti ini dengan tampilan baru yang diinginkan
-              child: Center(
-                child: Text('Tampilan Ketiga'),
-              ),
-            ),
-          ],
+      // Appbar
+      appBar: AppBar(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(20),
+            bottomLeft: Radius.circular(20),
+          ),
         ),
+        toolbarHeight: 10,
+        backgroundColor: Colors.lightBlue,
+        elevation: 0,
       ),
-      // bottom
+      // Body
+      body: IndexedStack(
+        index: _currentIndex,
+        children: [
+          // Tampilan pertama
+          Container(
+            constraints: BoxConstraints.loose(const Size(20, 960)),
+            child: const Placeholder(),
+          ),
+
+          // Tampilan kedua (List Menu)
+          const MenuHome(),
+
+          // Tampilan ketiga
+          const Center(
+            child: Text('Tampilan Ketiga'),
+          ),
+        ],
+      ),
+      // Bottom Navigation
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
         index: _currentIndex,

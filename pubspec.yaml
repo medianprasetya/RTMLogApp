@@ -39,6 +39,8 @@ dependencies:
   flutter_animated_icons: ^1.0.1
   card_loading: ^0.3.2
   lottie: ^1.4.3
+  http: 0.13.6
+  faker: ^2.1.0
 
   
 dev_dependencies:
@@ -84,7 +86,7 @@ flutter:
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins-Regular.ttf
-          weight: 700
+          # weight: 500
         - asset: assets/fonts/Poppins-Italic.ttf
           style: italic
   #   - family: Trajan Pro
