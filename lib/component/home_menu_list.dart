@@ -48,7 +48,7 @@ class _MenuHomeState extends State<MenuHome> {
         itemBuilder: (context, index) {
           final dataHome = kategoridata[index];
           return Container(
-            padding: const EdgeInsets.all(15),
+            padding: const EdgeInsets.only(right: 10, left: 10),
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -63,7 +63,7 @@ class _MenuHomeState extends State<MenuHome> {
             child: Card(
               elevation: 0,
               child: ListTile(
-                contentPadding: const EdgeInsets.all(10),
+                contentPadding: const EdgeInsets.all(8),
                 minLeadingWidth: 2,
                 leading: const CircleAvatar(
                     radius: 30,

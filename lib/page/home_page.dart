@@ -149,30 +149,31 @@ class _HomePageState extends State<HomePage> {
             left: 20,
             right: 20,
             child: Container(
-              // width: 250,
-              height: 100,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [
-                  BoxShadow(
-                    blurRadius: 2.0, // Blur radius
-                    spreadRadius: 3.0, // Spread radius
-                    offset: Offset(3.0, 5.0), // Shadow offset (x, y)
+                // width: 250,
+                height: 100,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 20.0, // Blur radius
+                      spreadRadius: 0.8, // Spread radius
+                      offset: Offset(1.0, 8.0), // Shadow offset (x, y)
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.all(8.0),
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: List.generate(
+                    25,
+                    (index) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(child: Text('Y')),
+                    ),
                   ),
-                ],
-              ),
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  ListTile(
-                    leading: const Text('F'),
-                    title: Text('All Normal!'),
-                    
-                  )
-                ],
-              ),
-            ),
+                )),
           ),
 
           // Body

@@ -29,13 +29,16 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
         elevation: 0,
       ),
       // Body
-      body: const Row(
-        children: [
-          Stack(
-            children: [],
-          )
-        ],
-      ),
+      body: ListView(
+                  scrollDirection: Axis.vertical,
+                  children: List.generate(
+                    25,
+                    (index) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(child: Text('Y')),
+                    ),
+                  ),
+                )
       // Bottom Navigation
     );
   }
