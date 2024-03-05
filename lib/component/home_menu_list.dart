@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:logtemp/model/home.dart';
+import 'package:logtemp/page/home_detail_page.dart';
 import 'package:logtemp/service/home_service.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
@@ -47,7 +48,7 @@ class _MenuHomeState extends State<MenuHome> {
         itemBuilder: (context, index) {
           final dataHome = kategoridata[index];
           return Container(
-            padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+            padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -77,7 +78,8 @@ class _MenuHomeState extends State<MenuHome> {
                 subtitle: Text(dataHome.title),
                 onTap: () {
                   // Panggil fungsi fetchData saat item ditekan
-                  print(dataHome.id);
+                  Navigator.of(context).pushNamed(HomeDetailPage.routeName,
+                      arguments: dataHome.id);
                 },
               ),
             ),

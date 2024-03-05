@@ -1,6 +1,105 @@
+// import 'package:flutter/material.dart';
+// import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+// import 'package:logtemp/component/home_menu_list.dart';
+// import 'package:faker/faker.dart';
+
+// class HomePage extends StatefulWidget {
+//   const HomePage({Key? key}) : super(key: key);
+
+//   static const routeName = '/homepage';
+
+//   @override
+//   State<HomePage> createState() => _HomePageState();
+// }
+
+// class _HomePageState extends State<HomePage> {
+//   final Faker fkr = Faker();
+//   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
+//   // Index untuk melacak tampilan mana yang sedang aktif
+//   int _currentIndex = 1;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       // Appbar
+//       // Appbar with container/card for user information
+//       appBar: AppBar(
+//         shape: const RoundedRectangleBorder(
+//           borderRadius: BorderRadius.only(
+//             bottomRight: Radius.circular(100),
+//             bottomLeft: Radius.circular(100),
+//           ),
+//         ),
+//         toolbarHeight: 160,
+
+//         backgroundColor: Colors.lightBlue,
+//         elevation: 0,
+//         // centerTitle: false, // Remove center alignment for card placement
+//         title: Container(
+//           width: 500,
+//           height: 120,
+//           decoration: BoxDecoration(
+//             color: Colors.lightBlue[50],
+//             borderRadius: BorderRadius.circular(20),
+//           ),
+//           padding: const EdgeInsets.all(8.0),
+//           margin: EdgeInsets.only(top: 120),
+//           child: Column(
+//             children: [
+//               Text(fkr.person.name()),
+//               Text(fkr.address.streetAddress()),
+//               Text(DateTime.now().toString().split(' ').first),
+//             ],
+//           ),
+//         ),
+//       ),
+//       // Body
+//       body: IndexedStack(
+//         index: _currentIndex,
+//         children: const [
+//           // Tampilan pertama
+//           Center(
+//             child: Text('Tampilan Kesatu'),
+//           ),
+
+//           // Tampilan kedua (List Menu)
+//           MenuHome(),
+
+//           // Tampilan ketiga
+//           Center(
+//             child: Text('Tampilan Ketiga'),
+//           ),
+//         ],
+//       ),
+//       // Bottom Navigation
+//       bottomNavigationBar: CurvedNavigationBar(
+//         key: _bottomNavigationKey,
+//         index: _currentIndex,
+//         animationDuration: const Duration(milliseconds: 200),
+//         color: Colors.lightBlue,
+//         backgroundColor: Colors.white,
+//         onTap: (index) {
+//           setState(() {
+//             _currentIndex = index;
+//           });
+//         },
+//         items: const [
+//           Icon(
+//             Icons.android_outlined,
+//             color: Colors.white,
+//           ),
+//           Icon(Icons.home, color: Colors.white),
+//           Icon(Icons.error, color: Colors.white),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:logtemp/view/home_menu_list.dart';
+import 'package:logtemp/component/home_menu_list.dart';
 import 'package:faker/faker.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,48 +115,96 @@ class _HomePageState extends State<HomePage> {
   final Faker fkr = Faker();
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
-  // Index untuk melacak tampilan mana yang sedang aktif
+  // Index for tracking the active view
   int _currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Appbar
-      appBar: AppBar(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(20),
-            bottomLeft: Radius.circular(20),
-          ),
-        ),
-        toolbarHeight: 10,
-        backgroundColor: Colors.lightBlue,
-        elevation: 0,
-      ),
-      // Body
-      body: IndexedStack(
-        index: _currentIndex,
+      // Use Stack to position the container
+      body: Stack(
         children: [
-          // Tampilan pertama
-          Container(
-            constraints: BoxConstraints.loose(const Size(20, 960)),
-            child: const Placeholder(),
+          // App bar
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppBar(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(100),
+                  bottomLeft: Radius.circular(100),
+                ),
+              ),
+              toolbarHeight: 150,
+              backgroundColor: Colors.lightBlue,
+              elevation: 0,
+              titleSpacing: 0.0, // Remove default title spacing
+            ),
           ),
 
-          // Tampilan kedua (List Menu)
-          const MenuHome(),
+          // Container with shadow and margin
+          Positioned(
+            top: 100, // Adjust margin as needed
+            left: 20,
+            right: 20,
+            child: Container(
+              // width: 250,
+              height: 100,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: const [
+                  BoxShadow(
+                    blurRadius: 2.0, // Blur radius
+                    spreadRadius: 3.0, // Spread radius
+                    offset: Offset(3.0, 5.0), // Shadow offset (x, y)
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: const Text('F'),
+                    title: Text('All Normal!'),
+                    
+                  )
+                ],
+              ),
+            ),
+          ),
 
-          // Tampilan ketiga
-          const Center(
-            child: Text('Tampilan Ketiga'),
+          // Body
+          Positioned.fill(
+            top: 180,
+            // Fills the remaining space
+            child: IndexedStack(
+              index: _currentIndex,
+              children: const [
+                // Tampilan pertama
+                Center(
+                  child: Text('Tampilan Kesatu'),
+                ),
+
+                // Tampilan kedua (List Menu)
+                MenuHome(),
+
+                // Tampilan ketiga
+                Center(
+                  child: Text('Tampilan Ketiga'),
+                ),
+              ],
+            ),
           ),
         ],
       ),
-      // Bottom Navigation
+
+      // Bottom navigation bar
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
         index: _currentIndex,
-        animationDuration: const Duration(milliseconds: 400),
+        animationDuration: const Duration(milliseconds: 200),
         color: Colors.lightBlue,
         backgroundColor: Colors.white,
         onTap: (index) {
