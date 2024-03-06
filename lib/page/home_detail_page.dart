@@ -16,30 +16,34 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Appbar
-      appBar: AppBar(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(40),
-            bottomLeft: Radius.circular(40),
+        // Appbar
+        appBar: AppBar(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(40),
+              bottomLeft: Radius.circular(40),
+            ),
           ),
+          toolbarHeight: 80,
+          // backgroundColor: Colors,
+          elevation: 0,
         ),
-        toolbarHeight: 80,
-        // backgroundColor: Colors,
-        elevation: 0,
-      ),
-      // Body
-      body: ListView(
-                  scrollDirection: Axis.vertical,
-                  children: List.generate(
-                    25,
-                    (index) => Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CircleAvatar(child: Text('Y')),
-                    ),
-                  ),
-                )
-      // Bottom Navigation
-    );
+        // Body
+        body: ListView(
+          scrollDirection: Axis.vertical,
+          children: List.generate(
+            25,
+            (index) => const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircleAvatar(
+                  child: Text(
+                'Y',
+                style: TextStyle(fontSize: 35),
+              )),
+            ),
+          ),
+        )
+        // Bottom Navigation
+        );
   }
 }
