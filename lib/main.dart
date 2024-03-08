@@ -18,12 +18,13 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Poppins',
           useMaterial3: true,
         ),
+        // darkTheme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
         home: const HomePage(),
         routes: {
           HomePage.routeName: (context) => const HomePage(),
           HomeDetailPage.routeName: (context) => const HomeDetailPage(),
-          // SplashScreen.routeName: (context) => const SplashScreen(),
+          SplashScreen.routeName: (context) => const SplashScreen(),
         });
   }
 }

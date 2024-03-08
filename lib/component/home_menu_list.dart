@@ -68,7 +68,8 @@ class _MenuHomeState extends State<MenuHome> {
                 leading: const CircleAvatar(
                     radius: 30,
                     backgroundColor: Colors.lightBlue,
-                    child: Icon(Icons.category_rounded, color: Colors.white)),
+                    child:
+                        Icon(Icons.share_location_sharp, color: Colors.white)),
                 trailing: const Icon(
                   Icons.arrow_forward_ios_sharp,
                   color: Colors.blueAccent,
@@ -80,6 +81,7 @@ class _MenuHomeState extends State<MenuHome> {
                   // Panggil fungsi fetchData saat item ditekan
                   Navigator.of(context).pushNamed(HomeDetailPage.routeName,
                       arguments: dataHome.id);
+                  print(dataHome.id);
                 },
               ),
             ),

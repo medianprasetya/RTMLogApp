@@ -124,6 +124,29 @@ class _HomePageState extends State<HomePage> {
       // Use Stack to position the container
       body: Stack(
         children: [
+          // Body
+          Positioned.fill(
+            top: 160,
+            // Fills the remaining space
+            child: IndexedStack(
+              index: _currentIndex,
+              children: const [
+                // Tampilan pertama
+                Center(
+                  child: Text('Tampilan Kesatu'),
+                ),
+
+                // Tampilan kedua (List Menu)
+                MenuHome(),
+
+                // Tampilan ketiga
+                Center(
+                  child: Text('Tampilan Ketiga'),
+                ),
+              ],
+            ),
+          ),
+
           // App bar
           Positioned(
             top: 0,
@@ -168,35 +191,12 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   children: List.generate(
                     25,
-                    (index) => Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    (index) => const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: CircleAvatar(child: Text('Y')),
                     ),
                   ),
                 )),
-          ),
-
-          // Body
-          Positioned.fill(
-            top: 180,
-            // Fills the remaining space
-            child: IndexedStack(
-              index: _currentIndex,
-              children: const [
-                // Tampilan pertama
-                Center(
-                  child: Text('Tampilan Kesatu'),
-                ),
-
-                // Tampilan kedua (List Menu)
-                MenuHome(),
-
-                // Tampilan ketiga
-                Center(
-                  child: Text('Tampilan Ketiga'),
-                ),
-              ],
-            ),
           ),
         ],
       ),
@@ -205,7 +205,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
         index: _currentIndex,
-        animationDuration: const Duration(milliseconds: 200),
+        animationDuration: const Duration(milliseconds: 400),
         color: Colors.lightBlue,
         backgroundColor: Colors.white,
         onTap: (index) {
