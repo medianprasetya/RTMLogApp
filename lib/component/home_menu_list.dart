@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:logtemp/model/home.dart';
-import 'package:logtemp/page/home_detail_page.dart';
+import 'package:logtemp/routes/route_name.dart';
 import 'package:logtemp/service/home_service.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
@@ -79,9 +80,14 @@ class _MenuHomeState extends State<MenuHome> {
                 subtitle: Text(dataHome.title),
                 onTap: () {
                   // Panggil fungsi fetchData saat item ditekan
-                  Navigator.of(context).pushNamed(HomeDetailPage.routeName,
-                      arguments: dataHome.id);
-                  print(dataHome.id);
+                  // Navigator.of(context).pushNamed(HomeDetailPage.routeName,
+                  //     arguments: dataHome.id);
+                  // print(dataHome.id);
+                  Get.snackbar('Memuat..', 'Data ${dataHome.title}',
+                      icon: const Icon(Icons.info_outline),
+                      backgroundColor: Color.fromARGB(47, 124, 170, 250));
+                  Get.toNamed(
+                      RouteName.homedetailpage + '?pGroupID=${dataHome.id}');
                 },
               ),
             ),

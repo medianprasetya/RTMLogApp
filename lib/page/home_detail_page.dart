@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
+import 'package:get/get.dart';
+// import 'package:http/http.dart';
 import 'package:logtemp/model/homedetail.dart';
 
 class HomeDetailPage extends StatefulWidget {
   const HomeDetailPage({Key? key}) : super(key: key);
 
-  static const routeName = '/homedetailpage';
+  // static const routeName = '/homedetailpage';
 
   @override
   State<HomeDetailPage> createState() => _HomeDetailPageState();
@@ -20,6 +22,7 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
     return Scaffold(
         // Appbar
         appBar: AppBar(
+          title: Text(Get.parameters['pGroupID'].toString()),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomRight: Radius.circular(40),
@@ -44,7 +47,7 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
             Flexible(
               flex: 1,
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: 1,
                 itemBuilder: (context, index) {
                   return Container(
                     padding: const EdgeInsets.only(right: 10, left: 10),
@@ -74,9 +77,11 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
                           color: Colors.blueAccent,
                           size: 18,
                         ),
-                        title: Text('tetetetees'),
-                        subtitle: Text('tetetetees'),
-                        onTap: () {},
+                        title: Text(Get.parameters['pGroupID'].toString()),
+                        subtitle: Text(Get.arguments.toString()),
+                        onTap: () {
+                          Get.back();
+                        },
                       ),
                     ),
                   );
