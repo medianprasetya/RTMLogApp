@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 void main() => runApp(const SplashScreen());
 
 class SplashScreen extends StatelessWidget {
-  static String routeName = '/splash';
+  // static String routeName = '/splash';
   const SplashScreen({super.key});
 
   @override
@@ -12,7 +12,7 @@ class SplashScreen extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
           body: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(

@@ -105,7 +105,7 @@ import 'package:faker/faker.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  static const routeName = '/homepage';
+  // static const routeName = '/homepage';
 
   @override
   State<HomePage> createState() => _HomePageState();
