@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:logtemp/bindings/home_b.dart';
 import 'package:logtemp/page/home_detail_page.dart';
 import 'package:logtemp/page/home_page.dart';
 import 'package:logtemp/page/information.dart';
@@ -14,13 +15,13 @@ class AppPage {
     GetPage(
       // ignore: prefer_interpolation_to_compose_strings
       // name: RouteName.homedetailpage + '/:parameter?',
-      name: RouteName.homedetailpage + '/?',
+      name: '${RouteName.homedetailpage}/?',
       page: () => const HomeDetailPage(),
     ),
     GetPage(
-      name: RouteName.homepage,
-      page: () => const HomePage(),
-    ),
+        name: RouteName.homepage,
+        page: () => const HomePage(),
+        binding: HomeBinding()),
     GetPage(
       name: RouteName.information,
       page: () => const Information(),

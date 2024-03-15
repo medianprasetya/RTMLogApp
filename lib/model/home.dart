@@ -1,13 +1,19 @@
 class ListHome {
-  final String id;
-  final String title;
+  final String GroupID;
+  final String GroupName;
 
-  ListHome({required this.id, required this.title});
+  ListHome({
+    required this.GroupID,
+    required this.GroupName,
+  });
 
-  factory ListHome.fromJson(Map<String, dynamic> json) {
-    return ListHome(
-      id: json['GroupID'] ?? '', // tambahkan null check dan default value
-      title: json['GroupName'] ?? '', // tambahkan null check dan default value
-    );
-  }
+  factory ListHome.fromJson(Map<String, dynamic> json) => ListHome(
+        GroupID: json['GroupID'],
+        GroupName: json['GroupName'],
+      );
+
+  // Map<String, dynamic> toJson() => {
+  //       'GroupID': GroupID,
+  //       'GroupName': GroupName,
+  //     };
 }

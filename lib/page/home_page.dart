@@ -21,6 +21,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // final homec = Get.find<HomeController>();
+
     return Scaffold(
       // Use Stack to position the container
       body: Stack(
@@ -31,9 +33,9 @@ class _HomePageState extends State<HomePage> {
             // Fills the remaining space
             child: IndexedStack(
               index: _currentIndex,
-              children: const [
+              children: [
                 // Tampilan pertama
-                Center(
+                const Center(
                   child: Text('Tampilan Kesatu'),
                 ),
 
@@ -41,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                 MenuHome(),
 
                 // Tampilan ketiga
-                Center(
+                const Center(
                   child: Text('Tampilan Ketiga'),
                 ),
               ],

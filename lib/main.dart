@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logtemp/bindings/home_b.dart';
 import 'package:logtemp/routes/page_route.dart';
 import 'page/home_page.dart';
 // import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get.put(HomeController());
     return GetMaterialApp(
       theme: ThemeData(
         fontFamily: 'Poppins',
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
       // darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       home: const HomePage(),
+      initialBinding: HomeBinding(),
       // routes: {
       //   HomePage.routeName: (context) => const HomePage(),
       //   HomeDetailPage.routeName: (context) => const HomeDetailPage(),
