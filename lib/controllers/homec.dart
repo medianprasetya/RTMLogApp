@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:logtemp/model/home.dart';
+// import 'package:logtemp/model/homedetail.dart';
 
 // class HomeController extends GetxController with StateMixin<List<ListHome>> {
 //   // with
@@ -54,7 +55,7 @@ class HomeController extends GetxController with StateMixin<List<ListHome>> {
           .map((e) => ListHome.fromJson(e)));
       change(data, status: RxStatus.success());
     } else {
-      change(null, status: RxStatus.error('Error fetching data'));
+      change(null, status: RxStatus.error('Gagal memuat data'));
     }
   }
 }

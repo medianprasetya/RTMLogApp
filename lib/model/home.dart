@@ -1,19 +1,33 @@
+// import 'dart:convert';
+
+// ListHome listHomeFromJson(String str) => ListHome.fromJson(json.decode(str));
+
+// String listHomeToJson(ListHome data) => json.encode(data.toJson());
+
 class ListHome {
-  final String GroupID;
-  final String GroupName;
+  String groupId;
+  String groupName;
+  DateTime addedTime;
+  DateTime modifiedTime;
 
   ListHome({
-    required this.GroupID,
-    required this.GroupName,
+    required this.groupId,
+    required this.groupName,
+    required this.addedTime,
+    required this.modifiedTime,
   });
 
   factory ListHome.fromJson(Map<String, dynamic> json) => ListHome(
-        GroupID: json['GroupID'],
-        GroupName: json['GroupName'],
+        groupId: json["GroupID"] ?? "",
+        groupName: json["GroupName"] ?? "",
+        addedTime: DateTime.parse(json["AddedTime"]),
+        modifiedTime: DateTime.parse(json["ModifiedTime"]),
       );
 
-  // Map<String, dynamic> toJson() => {
-  //       'GroupID': GroupID,
-  //       'GroupName': GroupName,
-  //     };
+  Map<String, dynamic> toJson() => {
+        "GroupID": groupId,
+        "GroupName": groupName,
+        "AddedTime": addedTime.toIso8601String(),
+        "ModifiedTime": modifiedTime.toIso8601String(),
+      };
 }

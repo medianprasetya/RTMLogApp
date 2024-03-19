@@ -33,9 +33,9 @@ class _HomePageState extends State<HomePage> {
             // Fills the remaining space
             child: IndexedStack(
               index: _currentIndex,
-              children: [
+              children: const [
                 // Tampilan pertama
-                const Center(
+                Center(
                   child: Text('Tampilan Kesatu'),
                 ),
 
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                 MenuHome(),
 
                 // Tampilan ketiga
-                const Center(
+                Center(
                   child: Text('Tampilan Ketiga'),
                 ),
               ],

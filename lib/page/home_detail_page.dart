@@ -1,44 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:faker/faker.dart';
 import 'package:get/get.dart';
-// import 'package:http/http.dart';
-import 'package:logtemp/model/homedetail.dart';
+import 'package:logtemp/controllers/list_detail_homec.dart';
 
-class HomeDetailPage extends StatefulWidget {
-  const HomeDetailPage({Key? key}) : super(key: key);
+class HomeDetailPage extends GetView<HomeDetailController> {
+  const HomeDetailPage({super.key});
 
   // static const routeName = '/homedetailpage';
-
-  @override
-  State<HomeDetailPage> createState() => _HomeDetailPageState();
-}
-
-class _HomeDetailPageState extends State<HomeDetailPage> {
-  final Faker fkr = Faker();
-  List<ListDetailHome> kategoridata = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         // Appbar
         appBar: AppBar(
-          title: Text(Get.parameters['pGroupID'].toString()),
+          // title: Text(Get.parameters['pGroupID'].toString()),
+          title: Text("Group of ${controller.groupID.toString()}"),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomRight: Radius.circular(40),
               bottomLeft: Radius.circular(40),
             ),
           ),
-          // flexibleSpace: const Image(
-          //   image: AssetImage("assets/images/chick.png"),
-          //   alignment: Alignment.bottomCenter,
-          //   // fit: BoxFit.,
-          //   height: 50,
-          //   width: 50,
-          //   repeat: ImageRepeat.noRepeat,
-          // ),
+
           toolbarHeight: 80,
-          // backgroundColor: Colors,
+
           elevation: 0,
         ),
         // Body
@@ -46,48 +29,100 @@ class _HomeDetailPageState extends State<HomeDetailPage> {
           children: [
             Flexible(
               flex: 1,
-              child: ListView.builder(
-                itemCount: 1,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: const EdgeInsets.only(right: 10, left: 10),
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color.fromARGB(255, 226, 241, 255)
-                              .withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 12,
-                          offset: const Offset(1, 2),
-                        ),
-                      ],
-                    ),
-                    child: Card(
-                      elevation: 0,
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.all(8),
-                        minLeadingWidth: 2,
-                        leading: const CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Colors.lightBlue,
-                            child: Icon(Icons.share_location_sharp,
-                                color: Colors.white)),
-                        trailing: const Icon(
-                          Icons.arrow_forward_ios_sharp,
-                          color: Colors.blueAccent,
-                          size: 18,
-                        ),
-                        title: Text(Get.parameters['pGroupID'].toString()),
-                        subtitle: Text(Get.arguments.toString()),
-                        onTap: () {
-                          Get.back();
-                        },
+              child: controller.obx(
+                (state) => ListView.builder(
+                  itemCount: state!.length,
+                  itemBuilder: (context, index) {
+                    final informasi = state[index];
+                    return Container(
+                      padding: const EdgeInsets.only(right: 10, left: 10),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color.fromARGB(255, 226, 241, 255)
+                                .withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 12,
+                            offset: const Offset(1, 2),
+                          ),
+                        ],
                       ),
-                    ),
-                  );
-                },
+                      child: Card(
+                        elevation: 0,
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(8),
+                          minLeadingWidth: 2,
+                          leading: CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Colors.lightBlue,
+                              child: Text(
+                                informasi.deviceId.toString(),
+                                style: const TextStyle(color: Colors.white),
+                              )),
+                          trailing: const Icon(
+                            Icons.arrow_forward_ios_sharp,
+                            color: Colors.blueAccent,
+                            size: 18,
+                          ),
+                          title: Text(informasi.deviceName.toString()),
+                          onTap: () {
+                            Get.toNamed("homedetailprofile",
+                                arguments: informasi.deviceId);
+                            // Get.defaultDialog(
+                            //   barrierDismissible: true,
+                            //   title: informasi.deviceName.toString(),
+                            //   radius: BorderSide.strokeAlignCenter,
+
+                            // Get.snackbar(
+                            //   'Closing..',
+                            //   'Data ${state[index]} ',
+                            //   animationDuration: const Duration(seconds: 1),
+                            //   duration: const Duration(seconds: 2),
+                            //   icon: const Icon(Icons.info_outline),
+                            //   backgroundColor:
+                            //       const Color.fromARGB(47, 124, 170, 250),
+                            // );
+                            // },
+
+                            // content: Column(
+                            //   children: [
+                            //     Table(
+                            //       // border: TableBorder.all(width: 1),
+                            //       children: [
+                            //         TableRow(children: [
+                            //           Text('Device ID'),
+                            //           Text(
+                            //             ': ${informasi.deviceId.toString()}',
+                            //           ),
+                            //         ]),
+                            //         TableRow(children: [
+                            //           Text('Device Name'),
+                            //           Text(
+                            //               ': ${informasi.deviceName.toString()}'),
+                            //         ]),
+                            //         TableRow(children: [
+                            //           Text('Lower Limit'),
+                            //           Text(
+                            //               ': ${informasi.lowerLimit.toString()}'),
+                            //         ]),
+                            //         TableRow(children: [
+                            //           Text('Upper Limit'),
+                            //           Text(
+                            //               ': ${informasi.upperLimit.toString()}'),
+                            //         ]),
+                            //       ],
+                            //     ),
+                            //   ],
+                            // ),
+                            // );
+                          },
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
-            )
+            ),
           ],
         )
         // Bottom Navigation

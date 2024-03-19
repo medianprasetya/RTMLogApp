@@ -115,15 +115,15 @@ class MenuHome extends GetView<HomeController> {
       child: controller.obx(
         (state) => ListView.builder(
           // Gunakan panjang list dari controller.ListHome
-          // itemCount: state.length,
+          itemCount: state?.length,
           itemBuilder: (context, index) {
-            final listHome = state?[index]; // Akses model ListHome
             return Container(
               padding: const EdgeInsets.only(right: 10, left: 10),
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Color.fromARGB(255, 226, 241, 255).withOpacity(0.5),
+                    color: const Color.fromARGB(255, 226, 241, 255)
+                        .withOpacity(0.5),
                     spreadRadius: 2,
                     blurRadius: 12,
                     offset: const Offset(1, 2),
@@ -146,20 +146,21 @@ class MenuHome extends GetView<HomeController> {
                     color: Color.fromARGB(255, 92, 115, 156),
                     size: 18,
                   ),
-                  title:
-                      Text(listHome!.GroupName), // Akses property dari ListHome
-                  subtitle:
-                      Text(listHome.GroupID), // Akses property dari ListHome
+                  title: Text(
+                      state![index].groupName), // Akses property dari ListHome
+                  subtitle: Text(
+                      state[index].groupId), // Akses property dari ListHome
                   onTap: () {
                     Get.snackbar(
                       'Memuat..',
-                      'Data ',
+                      'Data ${state[index].groupName}',
                       animationDuration: const Duration(seconds: 1),
                       duration: const Duration(seconds: 2),
                       icon: const Icon(Icons.info_outline),
-                      backgroundColor: Color.fromARGB(47, 124, 170, 250),
+                      backgroundColor: const Color.fromARGB(47, 124, 170, 250),
                     );
-                    Get.toNamed(RouteName.homedetailpage);
+                    Get.toNamed(RouteName.homedetailpage,
+                        arguments: state[index].groupId);
                   },
                 ),
               ),
