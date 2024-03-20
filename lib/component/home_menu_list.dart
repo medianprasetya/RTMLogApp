@@ -103,6 +103,7 @@ import 'package:logtemp/controllers/homec.dart';
 import 'package:logtemp/routes/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:card_loading/card_loading.dart';
 
 // class MenuHome extends StatelessWidget {
 
@@ -168,6 +169,45 @@ class MenuHome extends GetView<HomeController> {
           },
         ),
         onEmpty: const Text("Data tidak ditemukan"),
+        onLoading: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.all(30),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          CardLoading(
+                            height: 30,
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            width: 100,
+                            margin: EdgeInsets.only(bottom: 10),
+                          ),
+                          CardLoading(
+                            height: 40,
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            margin: EdgeInsets.only(bottom: 10),
+                          ),
+                          CardLoading(
+                            height: 30,
+                            width: 200,
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            margin: EdgeInsets.only(bottom: 10),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  childCount: 10,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

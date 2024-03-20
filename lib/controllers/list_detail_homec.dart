@@ -22,7 +22,6 @@ class HomeDetailController extends GetxController
       change(data, status: RxStatus.success());
     } else {
       change(null, status: RxStatus.error('Gagal Memuat data'));
-      // Consider adding more specific error handling here
     }
   }
 }

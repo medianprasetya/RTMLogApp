@@ -45,7 +45,7 @@ class ProfileDetail {
   });
 
   factory ProfileDetail.fromJson(Map<String, dynamic> json) => ProfileDetail(
-        deviceName: json["DeviceName"] ?? "",
+        deviceName: json["DeviceName"] ?? "Profile",
         location: json["Location"] ?? "",
         groupId: json["GroupID"] ?? "",
         lowerLimit: json["LowerLimit"] ?? "",
