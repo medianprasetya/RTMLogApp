@@ -2,12 +2,12 @@
 //
 //     final profileDetail = profileDetailFromJson(jsonString);
 
-import 'dart:convert';
+// import 'dart:convert';
 
-ProfileDetail profileDetailFromJson(String str) =>
-    ProfileDetail.fromJson(json.decode(str));
+// ProfileDetail profileDetailFromJson(String str) =>
+//     ProfileDetail.fromJson(json.decode(str));
 
-String profileDetailToJson(ProfileDetail data) => json.encode(data.toJson());
+// String profileDetailToJson(ProfileDetail data) => json.encode(data.toJson());
 
 class ProfileDetail {
   String deviceName;
@@ -45,19 +45,19 @@ class ProfileDetail {
   });
 
   factory ProfileDetail.fromJson(Map<String, dynamic> json) => ProfileDetail(
-        deviceName: json["DeviceName"],
-        location: json["Location"],
-        groupId: json["GroupID"],
-        lowerLimit: json["LowerLimit"],
-        upperLimit: json["UpperLimit"],
-        unit: json["Unit"],
-        offset: json["Offset"],
-        ipAddress: json["IpAddress"],
-        dns: json["Dns"],
-        gateway: json["Gateway"],
-        subnet: json["Subnet"],
-        apn: json["Apn"],
-        apnPasswd: json["ApnPasswd"],
+        deviceName: json["DeviceName"] ?? "",
+        location: json["Location"] ?? "",
+        groupId: json["GroupID"] ?? "",
+        lowerLimit: json["LowerLimit"] ?? "",
+        upperLimit: json["UpperLimit"] ?? "",
+        unit: json["Unit"] ?? "",
+        offset: json["Offset"] ?? "",
+        ipAddress: json["IpAddress"] ?? "",
+        dns: json["Dns"] ?? "",
+        gateway: json["Gateway"] ?? "",
+        subnet: json["Subnet"] ?? "",
+        apn: json["Apn"] ?? "",
+        apnPasswd: json["ApnPasswd"] ?? "",
         addedTime: DateTime.parse(json["AddedTime"]),
         modifiedTime: DateTime.parse(json["ModifiedTime"]),
       );
