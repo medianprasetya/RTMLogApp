@@ -58,8 +58,8 @@ class ProfileDetail {
         subnet: json["Subnet"] ?? "",
         apn: json["Apn"] ?? "",
         apnPasswd: json["ApnPasswd"] ?? "",
-        addedTime: DateTime.parse(json["AddedTime"]),
-        modifiedTime: DateTime.parse(json["ModifiedTime"]),
+        addedTime: DateTime.parse(json["AddedTime"] ?? ""),
+        modifiedTime: DateTime.parse(json["ModifiedTime"] ?? ""),
       );
 
   Map<String, dynamic> toJson() => {

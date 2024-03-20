@@ -20,8 +20,8 @@ class ListHome {
   factory ListHome.fromJson(Map<String, dynamic> json) => ListHome(
         groupId: json["GroupID"] ?? "",
         groupName: json["GroupName"] ?? "",
-        addedTime: DateTime.parse(json["AddedTime"]),
-        modifiedTime: DateTime.parse(json["ModifiedTime"]),
+        addedTime: DateTime.parse(json["AddedTime"] ?? ""),
+        modifiedTime: DateTime.parse(json["ModifiedTime"] ?? ""),
       );
 
   Map<String, dynamic> toJson() => {

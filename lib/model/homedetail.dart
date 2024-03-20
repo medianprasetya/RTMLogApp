@@ -30,7 +30,7 @@ class ListDetailHome {
         deviceId: json["DeviceID"] ?? "",
         deviceName: json["DeviceName"] ?? "",
         measuringValue: json["MeasuringValue"] ?? "",
-        measuringTime: DateTime.parse(json["MeasuringTime"]),
+        measuringTime: DateTime.parse(json["MeasuringTime"] ?? ""),
         upperLimit: json["UpperLimit"] ?? "",
         lowerLimit: json["LowerLimit"] ?? "",
       );
