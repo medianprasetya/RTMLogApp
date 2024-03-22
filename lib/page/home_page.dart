@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
     // final homec = Get.find<HomeController>();
 
     return Scaffold(
+      backgroundColor: Colors.white,
       // Use Stack to position the container
       body: Stack(
         children: [
@@ -109,7 +110,7 @@ class _HomePageState extends State<HomePage> {
         key: _bottomNavigationKey,
         index: _currentIndex,
         animationDuration: const Duration(milliseconds: 400),
-        color: Colors.lightBlue,
+        color: Colors.blue,
         backgroundColor: Colors.white,
         onTap: (index) {
           setState(() {

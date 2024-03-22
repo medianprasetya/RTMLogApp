@@ -125,31 +125,31 @@ class HomeDetailPage extends GetView<HomeDetailController> {
               onLoading: CustomScrollView(
                 slivers: [
                   SliverPadding(
-                    padding: const EdgeInsets.all(30),
+                    padding: const EdgeInsets.all(10),
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(top: 20),
+                          return const Padding(
+                            padding: EdgeInsets.only(top: 10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
+                              children: [
                                 CardLoading(
                                   curve: Curves.linear,
-                                  height: 30,
+                                  height: 20,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15)),
                                   width: 100,
                                   margin: EdgeInsets.only(bottom: 10),
                                 ),
                                 CardLoading(
-                                  height: 40,
+                                  height: 20,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15)),
                                   margin: EdgeInsets.only(bottom: 10),
                                 ),
                                 CardLoading(
-                                  height: 30,
+                                  height: 20,
                                   width: 200,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15)),
