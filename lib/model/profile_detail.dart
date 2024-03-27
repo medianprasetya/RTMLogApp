@@ -25,6 +25,8 @@ class ProfileDetail {
   String apnPasswd;
   DateTime addedTime;
   DateTime modifiedTime;
+  String measuringValue;
+  DateTime timeOnly;
 
   ProfileDetail({
     required this.deviceName,
@@ -42,6 +44,8 @@ class ProfileDetail {
     required this.apnPasswd,
     required this.addedTime,
     required this.modifiedTime,
+    required this.measuringValue,
+    required this.timeOnly,
   });
 
   factory ProfileDetail.fromJson(Map<String, dynamic> json) => ProfileDetail(
@@ -58,8 +62,10 @@ class ProfileDetail {
         subnet: json["Subnet"] ?? "",
         apn: json["Apn"] ?? "",
         apnPasswd: json["ApnPasswd"] ?? "",
-        addedTime: DateTime.parse(json["AddedTime"] ?? ""),
-        modifiedTime: DateTime.parse(json["ModifiedTime"] ?? ""),
+        addedTime: DateTime.parse(json["AddedTime"] ?? "2024-01-01"),
+        modifiedTime: DateTime.parse(json["ModifiedTime"] ?? "2024-01-01"),
+        measuringValue: json["MeasuringValue"] ?? "",
+        timeOnly: DateTime.parse(json["TimeOnly"] ?? "2024-01-01"),
       );
 
   Map<String, dynamic> toJson() => {
@@ -78,5 +84,7 @@ class ProfileDetail {
         "ApnPasswd": apnPasswd,
         "AddedTime": addedTime.toIso8601String(),
         "ModifiedTime": modifiedTime.toIso8601String(),
+        "measuringValue": measuringValue,
+        "TimeOnly": timeOnly.toIso8601String(),
       };
 }

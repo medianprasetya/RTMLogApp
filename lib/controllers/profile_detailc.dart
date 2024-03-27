@@ -49,6 +49,34 @@ class ProfileDetailController extends GetxController
   void onInit() {
     super.onInit();
     getDataProfile(deviceID); // Panggil metode langsung
+    getLatestData(deviceID); // Panggil metode langsung
+  }
+
+  Future getLatestData(String? deviceID) async {
+    try {
+      final responselatestdata = await GetConnect().get(
+        'https://odc.mpdev.my.id/dashboard/latest-data?pDeviceId=$deviceID',
+      );
+
+      if (responselatestdata.statusCode == 200) {
+        final Map<String, dynamic> res = responselatestdata.body;
+        final Map<String, dynamic> latestData = res['data']['grafikData'];
+
+        final data = ProfileDetail.fromJson(latestData);
+        // print(data.toJson()); // Print data dalam bentuk Map
+        // print(res);
+        // print(data);
+
+        change(data, status: RxStatus.success());
+      } else {
+        throw Exception(
+            'Gagal mengambil Data profil. Kode: ${responselatestdata.statusCode}');
+      }
+    } catch (e) {
+      print('Terjadi kesalahan: $e');
+      change(null,
+          status: RxStatus.error('Terjadi kesalahan: ${e.toString()}'));
+    }
   }
 
   Future<void> getDataProfile(String? deviceID) async {
@@ -64,14 +92,14 @@ class ProfileDetailController extends GetxController
 
         final data = ProfileDetail.fromJson(deviceData);
         // print(data.toJson()); // Print data dalam bentuk Map
-
+        // print(deviceData.length);
         change(data, status: RxStatus.success());
       } else {
         throw Exception(
             'Gagal mengambil detail profil. Kode: ${response.statusCode}');
       }
     } catch (e) {
-      // print('Terjadi kesalahan: $e');
+      print('Terjadi kesalahan: $e');
       change(null,
           status: RxStatus.error('Terjadi kesalahan: ${e.toString()}'));
     }

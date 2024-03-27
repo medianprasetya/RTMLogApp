@@ -16,14 +16,14 @@ class HomeProfileDetail extends GetView<ProfileDetailController> {
         // title: Text(),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(40),
-            bottomLeft: Radius.circular(40),
+            bottomRight: Radius.circular(20),
+            bottomLeft: Radius.circular(20),
           ),
         ),
 
-        toolbarHeight: 80,
-        // backgroundColor: Colors,
-        elevation: 0,
+        toolbarHeight: 60,
+        // backgroundColor: Colors.grey,
+        // elevation: 4,
       ),
       // Body
       body: controller.obx(
@@ -36,7 +36,7 @@ class HomeProfileDetail extends GetView<ProfileDetailController> {
               const CircleAvatar(
                 minRadius: 50,
                 child: Icon(
-                  Icons.add_moderator_outlined,
+                  Icons.add_to_queue_outlined,
                   size: 50,
                 ),
               ),
@@ -108,11 +108,40 @@ class HomeProfileDetail extends GetView<ProfileDetailController> {
                   height: 40,
                   child: ElevatedButton.icon(
                       onPressed: () => {
-                            print(state?.deviceName),
-                            ProfileDetailController()
-                                .getDataProfile(state?.deviceName),
+                            // print(state!.deviceName),
+                            print(Get.arguments),
+                            // ProfileDetailController()
+                            //     .getDataProfile(Get.arguments),
+                            // ProfileDetailController()
+                            //     .getLatestData(Get.arguments).then((value) {
+
+                            //     },),
+                            Get.defaultDialog(
+                              title: "Last Temperature Detected",
+                              content: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    state!.measuringValue,
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 40,
+                                    ),
+                                  ),
+                                  Text(
+                                    state.timeOnly.toString(),
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ],
+                              ),
+                            ),
                           },
-                      style: const ButtonStyle(alignment: Alignment.center),
+                      style: const ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll(
+                              Color.fromARGB(255, 255, 255, 255)),
+                          alignment: Alignment.center),
                       icon: const Icon(Icons.location_pin),
                       label: Text(state?.deviceName ?? "Refresh")),
                 ),
@@ -124,66 +153,40 @@ class HomeProfileDetail extends GetView<ProfileDetailController> {
               ),
 
               // bawah
-              SizedBox(
-                child: Row(
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      child: Container(
-                        padding: EdgeInsets.all(5),
-                        margin: EdgeInsets.all(2),
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 226, 252, 228),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 2,
-                              spreadRadius: 1,
-                              offset: Offset(-0, 4),
-                            ),
-                          ],
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
-                        ),
-                        height: 200,
-                        width: 180,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Color.fromARGB(232, 0, 165, 14),
-                                  ),
-                                  child: Icon(Icons.code, color: Colors.white),
-                                ),
-                                // Text(state?.deviceName ?? "Refresh"),
-                              ],
-                            ),
-                            Text("IP : ${state?.ipAddress ?? "IP Address"}"),
-                            Text("D  ${state?.dns ?? "IP Address"}"),
-                            Text("G  ${state?.gateway ?? "IP Address"}"),
-                            Text("A : ${state?.apn ?? "IP Address"}"),
-                            Text("IP"),
-                            Container(
-                              padding: EdgeInsets.all(15),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color.fromARGB(232, 0, 165, 14),
-                              ),
-                              child: Text("Address Information",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 15)),
-                            ),
-                          ],
-                        ),
-                      ),
+              Flexible(
+                fit: FlexFit.loose,
+                flex: 4,
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  children: <Widget>[
+                    DetailInformation(
+                      name: "IP Address",
+                      value: state?.ipAddress,
+                    ),
+                    DetailInformation(
+                      name: "APN",
+                      value: state?.apn,
+                    ),
+                    DetailInformation(
+                      name: "DNS",
+                      value: state?.dns,
+                    ),
+                    DetailInformation(
+                      name: "Gateway",
+                      value: state?.gateway,
+                    ),
+                    DetailInformation(
+                      name: "Group ID",
+                      value: state?.groupId,
+                    ),
+                    DetailInformation(
+                      name: "Subnet Mask",
+                      value: state?.subnet,
+                    ),
+                    DetailInformation(
+                      name: "Unit",
+                      value: state?.unit,
                     ),
                   ],
                 ),
@@ -283,6 +286,30 @@ class HomeProfileDetail extends GetView<ProfileDetailController> {
                               ],
                             ),
                           ),
+
+                          SizedBox(
+                            // color: Colors.blue,
+                            height: 500,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Flexible(
+                                  flex: 1,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CardLoading(
+                                        height: 400,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20)),
+                                        margin: EdgeInsets.only(bottom: 10),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     );
@@ -292,6 +319,48 @@ class HomeProfileDetail extends GetView<ProfileDetailController> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class DetailInformation extends StatelessWidget {
+  final String? name;
+  final String? value;
+
+  const DetailInformation({
+    super.key,
+    this.name,
+    this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      // leading: ,
+      leading: CircleAvatar(child: Image.asset("assets/images/chick.png")),
+      title: Text(
+        value ?? "-",
+        style: const TextStyle(
+          fontSize: 16,
+          letterSpacing: 1.2,
+        ),
+      ),
+      trailing: Container(
+        decoration: BoxDecoration(
+          color: Colors.green[100],
+          borderRadius: const BorderRadius.all(
+            Radius.circular(15.0),
+          ),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+        child: Text(
+          name ?? "-",
+          style: const TextStyle(
+            color: Colors.green,
+            fontSize: 16,
+          ),
         ),
       ),
     );
