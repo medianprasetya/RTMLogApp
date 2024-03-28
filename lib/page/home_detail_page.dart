@@ -63,7 +63,7 @@ class HomeDetailPage extends GetView<HomeDetailController> {
                         trailing: const Icon(
                           Icons.arrow_forward_ios_sharp,
                           color: Colors.blueAccent,
-                          size: 18,
+                          size: 25,
                         ),
                         title: Text(informasi.deviceName.toString()),
                         onTap: () {

@@ -1,12 +1,16 @@
 import 'package:card_loading/card_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logtemp/controllers/latest_measurementc.dart';
 import 'package:logtemp/controllers/profile_detailc.dart';
 
 class HomeProfileDetail extends GetView<ProfileDetailController> {
-  const HomeProfileDetail({super.key});
+  // final ccs = Get.put(LatestMeasurementController());
+  final cc = Get.find<LatestMeasurementController>();
 
+  // HomeProfileDetail({super.key});
   // static const routeName = '/HomeProfileDetail';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,35 +112,24 @@ class HomeProfileDetail extends GetView<ProfileDetailController> {
                   height: 40,
                   child: ElevatedButton.icon(
                       onPressed: () => {
-                            // print(state!.deviceName),
-                            print(Get.arguments),
-                            // ProfileDetailController()
-                            //     .getDataProfile(Get.arguments),
-                            // ProfileDetailController()
-                            //     .getLatestData(Get.arguments).then((value) {
-
-                            //     },),
-                            Get.defaultDialog(
-                              title: "Last Temperature Detected",
-                              content: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    state!.measuringValue,
-                                    style: TextStyle(
-                                      color: Colors.red,
-                                      fontSize: 40,
-                                    ),
-                                  ),
-                                  Text(
-                                    state.timeOnly.toString(),
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            cc
+                                .getLatestMeasurement(Get.arguments)
+                                .then((value) {
+                              Get.defaultDialog(
+                                title: "Last Measurement",
+                                content: Obx(() => Text(
+                                    '${cc.latestMeasurementDt.value}${state?.unit}')),
+                                // middleText:
+                                //     "${cc.latestMeasurementDt.value}${state?.unit}",
+                                titleStyle: TextStyle(fontSize: 12),
+                                middleTextStyle: TextStyle(
+                                    fontSize: 65, fontWeight: FontWeight.w800),
+                                onCancel: () {
+                                  Get.back();
+                                },
+                              ).then((value) => Get.snackbar("Data Measurement",
+                                  "Suhu Terakhir ruangan ${state?.deviceName} adalah ${cc.latestMeasurementDt}${state?.unit}"));
+                            }),
                           },
                       style: const ButtonStyle(
                           backgroundColor: MaterialStatePropertyAll(

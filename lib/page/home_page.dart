@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           // Body
           Positioned.fill(
-            top: 160,
+            top: 120,
             // Fills the remaining space
             child: IndexedStack(
               index: _currentIndex,

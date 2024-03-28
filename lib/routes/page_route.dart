@@ -27,7 +27,7 @@ class AppPage {
     ),
     GetPage(
       name: '${RouteName.homedetailprofile}/?',
-      page: () => const HomeProfileDetail(),
+      page: () => HomeProfileDetail(),
       binding: ProfileDetailBinding(),
     ),
     GetPage(
